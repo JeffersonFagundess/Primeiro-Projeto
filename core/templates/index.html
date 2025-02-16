@@ -1,25 +1,40 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django 1 </title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Django 1</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css'%}" />
+  </head>
+  <body>
+    <h1>ola mundo</h1>
 
-    <h1>ola mundo </h1>
+    <img src="{% static 'imagens/django_logo.png' %}" alt="logo" />
 
-   <h2>{{ curso }}</h2>
+    <h2>{{ curso }}</h2>
 
-   <h3>{{outra}}</h3>
+    <h3>{{outra}}</h3>
 
-   {% for produto in produtos %}
+    <table>
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Preço</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for produto in produtos %}
+        <tr>
+          <td><a href="{% url 'produto' produto.id %}">{{produto.nome}}</a></td>
+          <td>{{produto.preco}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <button onclick="teste();">Clique-me</button>
 
-   <p>{{ produto}}</p>
-
-   {% endfor %}
-
-   
-    
-</body>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+  </body>
 </html>
