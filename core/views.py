@@ -30,6 +30,6 @@ def error404(request, exception):
     template = loader.get_template('404.html')
     return HttpResponse(content=template.render(), content_type='text/hmtl; charset=utf8', status=404)
 
-def error500(request, exception):
+def error500(request):
     template = loader.get_template('500.html')
     return HttpResponse(content=template.render(), content_type='text/hmtl; charset=utf8', status=500)
