@@ -4,27 +4,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Produto</title>
-    <link rel="stylesheet" href="{% static 'css/estilos.css'%}" />
+    <title>Detalhes do Produto</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}" />
   </head>
   <body>
-    <h1>Produto</h1>
+    <div class="container">
+      <header>
+        <h1>Detalhes do Produto</h1>
+        <img src="{% static 'imagens/logo.png' %}" alt="logo" class="logo" />
+      </header>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Produto</th>
-          <th>Preço</th>
-          <th>Estoque</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><a href="{% url 'index' %}">{{produto.nome}}</a></td>
-          <td>{{produto.preco}}</td>
-          <td>{{produto.estoque}}</td>
-        </tr>
-      </tbody>
-    </table>
+      <main>
+        <section class="product-details">
+          <h2>{{ produto.nome }}</h2>
+          <div class="product-image">
+            {% if produto.imagem %}
+            <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" />
+            {% else %}
+            <img
+              src="{% static 'imagens/default.png' %}"
+              alt="Imagem não disponível"
+            />
+            {% endif %}
+          </div>
+          <table class="product-table">
+            <tr>
+              <th>Preço</th>
+              <td>{{ produto.preco }}</td>
+            </tr>
+            <tr>
+              <th>Descrição</th>
+              <td>{{ produto.descricao }}</td>
+            </tr>
+            <tr>
+              <th>Estoque</th>
+              <td>{{ produto.estoque }}</td>
+            </tr>
+          </table>
+        </section>
+      </main>
+
+      <footer>
+        <a href="{% url 'index' %}" class="button">Voltar</a>
+      </footer>
+    </div>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
   </body>
 </html>

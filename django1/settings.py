@@ -17,6 +17,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-nra58%0!q5(jyu6=cpjcvuk65%@hh=igr!c102215&(=6y(v^t
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG COM VALOR "TRUE" ESTA EM MODO DE DESENVOLVIMENTO DEBUG "FALSE" MODO PRODUÇÃO
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -118,8 +120,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/' # USADO DURANTE O DESENVOLVIMETO
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # USADO DURANTE A PRODUÇÃO
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "core/static"]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Media files (Uploaded files)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
